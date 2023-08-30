@@ -4,15 +4,19 @@ import './App.css';
 // import CategoriesApp from './components/categories/CategoriesApp';
 // import ScategoriesApp from './components/scategories/ScategoriesApp';
 import Listarticles from './components/articlesRedux/Listarticles';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import ProductsAppAdmin from './admin/components/articles/ProductsAppAdmin';
+import NavScroll from './components/Navscroll';
 
 
 function App() {
   return (
     <div>
       <Router>
-    
+    <NavScroll/>
       <Routes>
       <Route path='/' element={<Listarticles/>}/>
+      <Route path='/articlesadmin' element={<ProductsAppAdmin/>}/>
     
     
 
