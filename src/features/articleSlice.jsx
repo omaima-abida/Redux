@@ -105,6 +105,7 @@ export const articleSlice = createSlice({
                 state.error = action.payload;
                 console.log("impossible de se connecter au serveur")
             })
+
             //insertion article
             .addCase(createArticle.pending, (state, action) => {
                 state.isLoading = true;
@@ -113,11 +114,14 @@ export const articleSlice = createSlice({
 
             })
             .addCase(createArticle.fulfilled, (state, action) => {
-                state.articles.push(action.payload);
+                //state.articles.push(action.payload);
+                state.articles =
+                    [action.payload, ...state.articles];
                 state.isLoading = false;
                 state.error = null;
                 state.success = action.payload;
             })
+
             .addCase(createArticle.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
