@@ -6,11 +6,25 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ReactLoading from 'react-loading';
-import { useSelector } from "react-redux"
+
+
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../features/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 
 const AfficheArticles = () => {
     const { articles, isLoading, error } = useSelector((state) => state.storearticles);
+
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
+    const handleAddToCart = (art) => {
+        dispatch(addToCart(art));
+        navigate("/cart");
+    };
+
+
+
     const renderArticles = () => {
         if (isLoading) return <center><ReactLoading type='spokes' color="red"
             height={'8%'} width={'8%'} /></center>
@@ -36,9 +50,10 @@ const AfficheArticles = () => {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button disabled={art.qtestock <= 1}
-                                    variant="contained" color="secondary" size="large"
 
+                                <Button disabled={art.qtestock <= 1} onClick={() =>
+                                    handleAddToCart(art)}
+                                    variant="contained" color="secondary" size="large"
                                 >
                                     {art.qtestock <= 1 ? "OUT OF SOLD" : "Add to cart"}
                                 </Button>

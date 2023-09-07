@@ -2,6 +2,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import articlesReducer from "../features/articleSlice"
 import categoriesReducer from "../features/categorieSlice"
 import scategoriesReducer from "../features/scategorieSlice"
+import cartSliceReducer from "../features/cartSlice"
+
 
 
 const store = configureStore({
@@ -9,6 +11,7 @@ const store = configureStore({
         storearticles: articlesReducer,
         storecategories: categoriesReducer,
         storescategories: scategoriesReducer,
+        storecart: cartSliceReducer,
     }
 })
 
